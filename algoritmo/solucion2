@@ -1,0 +1,20 @@
+class E2{
+     public static int sumaPares(int [] vector){ 
+        int s = 0; 
+        int i = 0; 
+       // int vetor[];
+        for (i=0; i < vector.length;i++){ 
+               
+            if((vector[i] % 2 == 0) && (vector[i] > 0)){  
+                s =  s + vector[i];
+            }  
+                
+                  
+                       
+        }   
+        
+            
+        return s;
+    } 
+}
+    

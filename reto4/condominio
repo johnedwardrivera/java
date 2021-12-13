@@ -1,0 +1,80 @@
+//EL CALIFICADOR GENERARÁ ERROR SI USTED NO IMPLEMENTA TODOS LOS MÉTODOS ESPECIFICADOS EN EL ENUNCIADO
+import java.util.ArrayList;
+public class Condominio {
+
+    //Inserte acá los atributos 
+    private ArrayList<Inmueble> inmuebles  = new ArrayList();
+
+    //Inserte acá el método constructor
+    public Condominio() { 
+    }  
+    public ArrayList<Inmueble> getInmuebles() {
+        return inmuebles;
+    }
+
+
+    //Inserte acá los SETTERS Y GETTERS
+    public void setInmuebles(ArrayList<Inmueble> inmuebles) {  
+        this.inmuebles = inmuebles;
+    }
+
+    //Inserte acá los métodos (NO LOS GETTER Y SETTERS)
+    public void agregarInmueble(Inmueble i){
+        boolean encontrado = false;
+        if(inmuebles.size() == 0){
+            inmuebles.add(i);
+        }
+        for(int j = 0; j < inmuebles.size(); j++){
+            if(inmuebles.get(j).getIDArrendador().equals(i.getIDArrendador())){
+                encontrado = true;
+                break;
+                
+            }else{
+                encontrado = false;
+            }
+        }
+        if(encontrado == false){
+            inmuebles.add(i);
+        }
+    }
+    public void eliminarInmueble(String ID){
+        int aux = 0;
+        boolean encontrado = false;
+        for(int i = 0; i < inmuebles.size(); i++){
+            if(inmuebles.get(i).getnCasa().equals(ID)){
+                encontrado = true;
+                aux = i;
+                break;
+            }
+        }
+        if(encontrado == true){
+            inmuebles.remove(aux);
+        }
+    } 
+    public double calcularArriendoMensualCondominio(){
+        double suma = 0;
+        for(int i = 0 ; i < inmuebles.size(); i++){
+            suma = suma + inmuebles.get(i).getCostoMensual();
+        }
+        return suma;
+    } 
+    public double promedioCostoInmueble(){
+        double suma = calcularArriendoMensualCondominio();
+        double promedio = 0;
+        promedio =  suma / inmuebles.size();
+        return promedio;
+        
+    } 
+    public double desviacionEstandarCostoInmueble(){
+        double promedio = promedioCostoInmueble();
+        double varianza = 0;
+        for(int i = 0; i < inmuebles.size(); i++){
+            varianza = varianza + Math.pow(inmuebles.get(i).getCostoMensual()- promedio, 2);
+        }
+        varianza = varianza / inmuebles.size();
+        double desviacion = Math.sqrt(varianza);
+        return desviacion;
+        
+    }
+
+}
